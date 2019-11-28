@@ -1,1 +1,346 @@
 Código
+
+
+#include <math.h>
+#include <stdio.h>
+#include <locale.h>
+
+int main()
+{
+    setlocale(LC_CTYPE, "Spanish");
+    int n, opcion;
+
+    int lat1, lat2, long1, long2;
+	float j, k, m;
+		
+    int x, y, z, o, p, q, falla, anom, prof, tunel;
+
+    float u, v, w, r, s, t, a, b, c, d, e, f, coorlat, coorlong;
+    /*Mensaje de Bienvenida*/
+printf("\nBienvenido\n");
+printf("\n¿Porqué hay hundimientos en Alvaro Obregon y Miguel Hidalgo?\n");
+printf("\nPara encontrar la cuasa escriba los datos que se piden\n");
+    
+    do
+    {
+        printf( "\n   1. Ubicacion de la falla a traves de coordenadas UTM.");
+		printf( "\n   2. Ubicacion de la falla a traves de coordenadas.");
+        printf( "\n	  3. Antecedentes geolgógicos.");
+        printf( "\n   4. Antecedentes de las colonias.");
+        printf( "\n   5. Analisis prueba georadar.");
+        printf( "\n   6. Tipo de túnel.");
+		printf( "\n   7. Guardar resultados");
+        printf( "\n   8. Fin." );
+        printf( "\n   Introduzca opcion (1-8): ");
+
+        scanf( "%d", &opcion );
+
+        /* Inicio del anidamiento */
+
+        switch ( opcion )
+        {
+//////////////////////////////////////////////////////////////////////////////////////////////
+/*CASO 1 COORDENADAS UTM FALLA*/ 
+        	    case 1: printf("\n Escriba las coordenada en UTM de dos puntos");
+        	    printf("\nLatitud 1: \n");
+	scanf("%d", &lat1);
+	printf("\nLongitud 1:\n");
+	scanf("%d", &long1);
+	printf("\nLatitud 2: \n");
+	scanf("%d", &lat2);
+	printf("\nLongitud 2:\n");
+	scanf("%d", &long2);
+	
+	j=(long2-long1);
+	k=(lat2-lat1);
+	m=(j/k);
+	
+	if(m=0.357)
+	{
+	printf("\nEl punto se encuentra en Falla A: \n");
+	}
+else if(m=0.949)
+	{
+	printf("\nEl punto se encuentra en Falla de Puente de Colorado:\n");
+	}
+else if(m=0.7)
+	  {
+	  printf("\nEl punto se encuentra en Falla Texcalatlalco:\n");
+	  }
+else if(m=0.474)
+	{
+	printf("\nEl punto se encuentra en Falla de Puente de Colorado:\n");
+	}
+else if(m=0.451)
+	  {
+	  printf("\nEl punto se encuentra en Falla Atzoyopan:\n");
+	  }else if(m=0.6)
+	{
+	printf("\nEl punto se encuentra en Falla de Santa Fe:\n");
+	}
+else if(m=0.212)
+	  {
+	  printf("\nEl punto se encuentra en Falla santa Fe:\n");
+	  }else if(m=0.25)
+	{
+	printf("\nEl punto se encuentra en Falla de Contadero:\n");
+	}
+	
+         
+//////////////////////////////////////////////////////////////////////////////////
+/*CASO 2 FALLA POR COORDENADAS*/
+            case 2: printf( "\n   Inserte las coordenadas" );
+
+
+/*UBICACIÃ“N Y CONVERSIÃ“N DE LAS COORDENADAS*/
+
+printf("\nInserte las coordenadas, primero los grados, luego los minutos y despues de los segundos\n");
+
+printf("\nGrados Longitud\n");
+scanf("%d", &x);
+printf("\tMinutos Longitud\t");
+scanf("%d", &y);
+printf("\tSegundos Longitud\t");
+scanf("%d", &z);
+
+u=z/60;
+v=y+u;
+w=v/60;
+
+coorlong=(x+w);
+printf("Las coordenadas de longitud en decimal son:%lf", coorlong);
+
+printf("\nGrados Latitud\n");
+scanf("%d", &o);
+printf("\tMinutos Latitud\t");
+scanf("%d", &p);
+printf("\tSegundos Latitud\t");
+scanf("%d", &q);
+
+r=q/60;
+s=p+r;
+t=s/60;
+
+
+coorlat=(o+t);
+printf("Las coordenadas de Latitud en decimal son:%lf", coorlat);
+
+/* DETERMINACION DE LA FALLA*/
+
+a=19.333334;
+b=19.383333;
+c=19.366667;
+d=19.350000;
+e=19.316668;
+f=19.283333;
+if(a=coorlong)
+	{
+	falla=1;
+	printf("\nNos encontramos en la falla 1 Contadero\n", falla);
+	printf("\nPara consultar Mapa de Falla: \n");
+	}
+
+else if(b=coorlong)
+{
+	falla=2;
+	printf("\nNos encontramos en la falla2 Santa Fe\n", falla);
+	
+	}
+else if(c=coorlong)
+{
+	falla=3;
+	printf("\nNos encontramos en la falla3 Falla Atzoyapan\n", falla);
+	
+	}
+else if(d=coorlong)
+{
+	falla=4;
+	printf("\nNos encontramos en la falla 4 Falla Puente Colorado\n", falla);
+	
+	}
+else if(e=coorlong)
+{
+	falla=5;
+	printf("\nNos encontramos en la falla 5  Falla Texcalatlaco\n", falla);
+	
+	}
+else if(f=coorlong)
+{
+	falla=6;
+	printf("\nNos encontramos en la falla 6 Falla Contreras\n", falla);
+	
+	}
+else
+	{
+	falla=0;
+	}
+
+                   break;
+////////////////////////////////////////////////////////////
+/* CASO 3 ANTECEDENTES GEOLÓGICOS*/                   
+    		case 3: printf( "\n   Antecedentes geológicos" );		
+		FILE* ant1=NULL;
+		char* antgeo= "Antecedentesgeo.txt";
+		char i[200];
+
+		ant1= fopen(antgeo, "r");
+
+		fscanf(ant1," %[^\n]",&i);
+		printf("I: %s\n",i);
+		fscanf(ant1," %[^\n]",&i);
+		printf("I: %s\n",i);
+		fscanf(ant1," %[^\n]",&i);
+		printf("I: %s\n",i);
+		fscanf(ant1," %[^\n]",&i);
+		printf("I: %s\n",i);
+		fscanf(ant1," %[^\n]",&i);
+		printf("I: %s\n",i);
+    	fscanf(ant1," %[^\n]",&i);
+		printf("I: %s\n",i);
+		fscanf(ant1," %[^\n]",&i);
+		printf("I: %s\n",i);
+		fscanf(ant1," %[^\n]",&i);
+		printf("I: %s\n",i);
+		fscanf(ant1," %[^\n]",&i);
+		printf("I: %s\n",i);
+		fscanf(ant1," %[^\n]",&i);
+		printf("I: %s\n",i);	
+    		break;
+///////////////////////////////////////////////////////////
+/* CASO 4 ANTECEDENTES DE LAS COLONIAS*/
+    		case 4: printf( "\n   Antecedentes de las colonias" );
+    		FILE* ant2=NULL;
+		char* antcol= "Antecedentescol.txt";
+		char l[200];
+
+		ant2= fopen(antcol, "r");
+		fscanf(ant2," %[^\n]",&l);
+		printf("I: %s\n",l);
+		fscanf(ant2," %[^\n]",&l);
+		printf("I: %s\n",l);
+		fscanf(ant2," %[^\n]",&l);
+		printf("I: %s\n",l);
+		fscanf(ant2," %[^\n]",&l);
+		printf("I: %s\n",l);
+		fscanf(ant2," %[^\n]",&l);
+		printf("I: %s\n",l);
+		fscanf(ant2," %[^\n]",&l);
+		printf("I: %s\n",l);
+		fscanf(ant2," %[^\n]",&l);
+		printf("I: %s\n",l);
+		fscanf(ant2," %[^\n]",&l);
+		printf("I: %s\n",l);
+		fscanf(ant2," %[^\n]",&l);
+		printf("I: %s\n",l);
+		fscanf(ant2," %[^\n]",&l);
+		printf("I: %s\n",l);
+    		break;
+////////////////////////////////////////////////////////////
+/* CASO 5 PRUEBA DEL GEORADAR */
+
+            case 5: printf( "\n   Analisis de prueba del georadar ", 163 );
+
+	printf("\n\tInserte los metros de la profundidad de la anomalia: ");
+	scanf("%d", &prof);
+	if(prof<=6)
+	{
+	printf("\nNo hay tunel\n");
+	}
+else if(prof<=13, prof>=6)
+	{
+	printf("\nHay un tunel Tipo 1\n");
+	}
+else if(prof<=15, prof>=13)
+	  {
+	  printf("\nNo hay tunel\n");
+	  }
+else if (prof<=17, prof>=15)
+	 {
+	 printf("\nHay un tunel Tipo 2\n");
+	 }
+else if (prof<=18, prof>=17)
+	 {
+	 printf("\nNo hay un tunel \n");
+	 }
+else if (prof<=20, prof>=18)
+	 {
+	 printf("\nHay un tunel Tipo 3\n");
+	 }
+else if(prof<=21, prof>=20)
+	  {
+	  printf("\nNo hay tunel\n");
+	  }
+else if(prof<=23, prof>=21)
+	  {
+	  printf("\nNo hay tunel\n");
+	  }
+else if(prof<=27, prof>=23)
+	  {
+	  printf("\nNo hay tunel\n");
+	  }
+else if(prof<=39, prof>=27)
+	  {
+	  printf("\nHay tunel Tipo 4\n");
+	  }
+	break;
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+/*CASO 6 ANÁLISIS DEL TIPO DE TÚNEL*/ 
+            case 6: printf( "\n   Analisis del Tipo de Tunel ", 163 );
+                   printf("\n Inserte el tipo de tÃºnel: ");
+		   scanf("%d", &tunel);
+	if(tunel=1)
+{
+	printf("\nTunel Tipo 1\n");
+	printf("\nTipo de material Lahar\n");
+	printf("\nCaracteristicas los clastos son subangulosos \n");
+	printf("\nLugares de mayor explotacion colonia Arturo MArtinez, Calzada Jalapa y Rio Guadalupe \n");
+	}
+else if(tunel=2)
+	{
+	printf("\nTunel Tipo 2\n");
+	printf("\nTipo de material Arena pumitica\n");
+	printf("\nCaracteristicas es de grano grueso de color crema y se disdegra muy facil \n");
+	printf("\nLugares de mayor explotacion Golondrinas segunda secciÃ³n\n");
+	}
+else if(tunel=3)
+	{
+	printf("\nTunel Tipo 3\n");
+	printf("\nTipo de material arena pumita\n");
+	printf("\nCaracteristicas grano medio de color blanco \n");
+	printf("\nLugares de mayor explotacion colonia Golondrinas junto con la Ampliacion las Aguilas\n");
+	}
+else if(tunel=4)
+	{
+	printf("\nTunel Tipo 4\n");
+	printf("\nTipo de material Lahar\n");
+	printf("\nCaracteristicas bien consolidado de fragmentos angulosos y contiene gravas y arenas\n");
+	printf("\nLugares de mayor explotaciÃ³n San Antonio y el Panteon Tarango \n");
+	}
+break;
+//////////////////////////////////////////////////////////////////////////////////////////////
+/*CASO 7 GUARDAR REUSLTADOS*/ 
+            case 7: printf("\n Guardar resultados");
+            void Resultados()
+{
+FILE * resultados;
+char* nombrearchivo = "resultados.txt";
+char r[200];
+
+resultados= fopen(nombrearchivo, "a");
+
+printf("Ingrese los resultados que quiera guardar");
+scanf(" %[^\n]",&r);
+fprintf(resultados, "%s \n",r);
+
+fclose(resultados);
+}
+         }
+
+
+         /* Fin del anidamiento */
+
+    } while ( opcion != 8 );
+
+    return 0;
+}
